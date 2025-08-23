@@ -210,9 +210,18 @@ html {
 
 /* Typography – prevent mid‑word breaks globally on headings */
 h1, h2, h3, h4, .title-main, .title-subtitle, .section-title, .heading, .title {
-  word-break: keep-all;      /* break only at spaces */
-  overflow-wrap: normal;     /* don't force breaks inside words */
-  hyphens: none;             /* disable automatic hyphenation */
+  word-break: keep-all !important;      /* break only at spaces */
+  overflow-wrap: normal !important;     /* don't force breaks inside words */
+  hyphens: none !important;             /* disable automatic hyphenation */
+  white-space: normal !important;       /* allow lines to wrap normally */
+}
+
+/* Utility to enforce clean wrapping where needed */
+.no-break {
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+  white-space: normal !important;
 }
 
 /* Títulos personalizados */
@@ -336,9 +345,10 @@ h1, h2, h3, h4, .title-main, .title-subtitle, .section-title, .heading, .title {
 
   /* Textos responsivos */
   h1, h2, h3, h4 {
-    word-break: keep-all;      /* mantém palavras inteiras */
-    overflow-wrap: normal;     /* quebra somente entre palavras */
-    hyphens: none;             /* sem hifenização automática */
+    word-break: keep-all !important;      /* mantém palavras inteiras */
+    overflow-wrap: normal !important;     /* quebra somente entre palavras */
+    hyphens: none !important;             /* sem hifenização automática */
+    white-space: normal !important;       /* permite quebra de linha normal */
   }
 
   /* Margens e paddings ajustados */
