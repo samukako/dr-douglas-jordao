@@ -1,61 +1,6 @@
-// src/components/Hero.tsx
-import React from "react";
+/* globals.css — Regras para impedir quebra com hífen em palavras longas */
 
-export function Hero() {
-  return (
-    <section id="inicio" className="hero-section">
-      <h1 className="no-break break-keep hyphens-none whitespace-normal text-center">
-        CUIDADO E EXCELÊNCIA EM CADA TRANSFORMAÇÃO
-      </h1>
-      {/* other content */}
-    </section>
-  );
-}
-
-// src/components/ExperienciaExclusiva.tsx
-import React from "react";
-
-export function ExperienciaExclusiva() {
-  return (
-    <section className="experiencia-exclusiva-section">
-      <h2 className="no-break break-keep hyphens-none whitespace-normal text-center">
-        O QUE TORNA ESSA EXPERIÊNCIA ÚNICA
-      </h2>
-      {/* other content */}
-    </section>
-  );
-}
-
-// src/components/MetodoFull.tsx
-import React from "react";
-
-export function MetodoFull() {
-  return (
-    <section className="metodo-full-section">
-      <h2 className="no-break break-keep hyphens-none whitespace-normal text-center">
-        O QUE O MÉTODO ENTREGA?
-      </h2>
-      {/* other content */}
-    </section>
-  );
-}
-
-// src/components/FAQ.tsx
-import React from "react";
-
-export function FAQ() {
-  return (
-    <section className="faq-section">
-      <h2 className="no-break break-keep hyphens-none whitespace-normal text-center">
-        PERGUNTAS FREQUENTES
-      </h2>
-      {/* other content */}
-    </section>
-  );
-}
-/* globals.css — regras simples para impedir hífen e corte de palavras */
-
-/* Utilidades que podemos aplicar nas headings */
+/* Utilidades aplicáveis diretamente nas headings */
 .no-break {
   word-break: keep-all !important;
   overflow-wrap: normal !important;
@@ -65,7 +10,11 @@ export function FAQ() {
   -moz-hyphens: none !important;
   -ms-hyphens: none !important;
 }
-.break-keep { word-break: keep-all !important; }
+
+.break-keep {
+  word-break: keep-all !important;
+}
+
 .hyphens-none {
   hyphens: none !important;
   -webkit-hyphens: none !important;
@@ -76,18 +25,20 @@ export function FAQ() {
 /* Aplicar globalmente em títulos */
 h1, h2, h3, h4,
 .title-main, .title-subtitle, .section-title, .heading, .title {
-  word-break: keep-all !important;      /* quebra só entre palavras */
-  overflow-wrap: normal !important;     /* não força quebra no meio */
-  white-space: normal !important;       /* permite quebrar linha normal */
+  word-break: keep-all !important;       /* quebra apenas entre palavras */
+  overflow-wrap: normal !important;      /* evita quebra forçada no meio */
+  white-space: normal !important;        /* permite quebra de linha normal */
   hyphens: none !important;
   -webkit-hyphens: none !important;
   -moz-hyphens: none !important;
   -ms-hyphens: none !important;
 }
 
-/* Opcional: equilíbrio de linhas em navegadores que suportam */
+/* Equilíbrio de linhas (opcional, navegadores compatíveis) */
 @supports (text-wrap: balance) {
-  .balance { text-wrap: balance; }
+  .balance {
+    text-wrap: balance;
+  }
 }
 
 /* Reforço no mobile */
@@ -100,6 +51,4 @@ h1, h2, h3, h4,
     hyphens: none !important;
     -webkit-hyphens: none !important;
     -moz-hyphens: none !important;
-    -ms-hyphens: none !important;
-  }
-}
+    -ms-hyphens: none !importa
