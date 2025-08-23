@@ -7,34 +7,24 @@ export function Hero() {
   };
 
   return (
-    <section id="inicio" className="relative h-screen w-full overflow-hidden">
-      {/* BG video cover, sem tarjas, centralizado */}
-      <div className="absolute inset-0 overflow-hidden">
+    <section id="inicio" className="relative h-[100dvh] sm:h-[100svh] w-full overflow-hidden md:h-[90vh]">
+      {/* BG video cover, centralizado e cobrindo 100% */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <iframe
           src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
           title="Background Video"
-          className="
-              absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              /* escala extremamente agressiva no MOBILE para eliminar faixas pretas */
-              h-[400%] w-[500%]
-              /* tablet */
-              md:h-[250%] md:w-[350%]
-              /* desktop */
-              lg:h-[145%] lg:w-[200%]
-              pointer-events-none
-            "
+          className="absolute left-1/2 top-1/2 max-w-none pointer-events-none transform-gpu -translate-x-1/2 -translate-y-1/2 h-[240dvh] w-[426.67dvh] sm:h-[240svh] sm:w-[426.67svh] md:h-[130vh] md:w-[231.11vh]"
           allow="autoplay; encrypted-media; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
-          loading="lazy"
-          style={{ border: 'none', pointerEvents: 'none' }}
+          loading="eager"
+          frameBorder={0}
+          aria-hidden="true"
+          tabIndex={-1}
         />
-        {/* overlay mais claro para deixar o fundo menos escuro */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75 pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/40 pointer-events-none"></div>
       </div>
       
       {/* Conteúdo reposicionado com título com quebras diferentes para mobile/desktop */}
-      <div className="relative z-10 h-full flex items-center px-4 md:px-6">
+      <div className="relative z-10 h-full flex items-center px-4 md:px-6 pt-16 md:pt-20">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center md:text-left text-white">
             {/* Título mobile - uma formatação */}
@@ -42,7 +32,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="md:hidden tracking-[0.12em] uppercase text-[20px] leading-tight mb-2 max-w-[90%] mx-auto"
+              className="md:hidden tracking-[0.12em] uppercase text-[20px] leading-tight mb-2 max-w-[90%] mx-auto [hyphens:none] [word-break:keep-all] [text-wrap:balance]"
               style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}
             >
               CUIDADO E EXCELÊNCIA<br />
@@ -54,7 +44,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="hidden md:block tracking-[0.12em] uppercase text-[28px] md:leading-[1.15] lg:text-[32px] lg:leading-[1.15] xl:text-[36px] xl:leading-[1.10] mb-3 max-w-[420px] lg:max-w-[460px]"
+              className="hidden md:block tracking-[0.12em] uppercase text-[28px] md:leading-[1.15] lg:text-[32px] lg:leading-[1.15] xl:text-[36px] xl:leading-[1.10] mb-3 max-w-[420px] lg:max-w-[460px] [hyphens:none] [word-break:keep-all] [text-wrap:balance]"
               style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}
             >
               CUIDADO E EXCELÊNCIA<br />
