@@ -142,54 +142,56 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md md:hidden"
             role="dialog"
             aria-modal="true"
             id="mobile-menu"
           >
-            <div className="grid h-[100lvh] place-content-center px-6">
-              <div className="flex w-full max-w-sm flex-col items-center gap-10 text-center">
-                <nav className="flex w-full max-w-sm flex-col items-center gap-8 text-center">
-                {menuItems.map((item, idx) => (
+            <div className="relative h-[100svh] w-full px-6">
+              <div className="absolute left-1/2 top-[calc(50%+env(safe-area-inset-top)/2)] -translate-x-1/2 -translate-y-1/2 w-full">
+                <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-10 text-center">
+                  <nav className="flex w-full max-w-sm flex-col items-center gap-8 text-center">
+                  {menuItems.map((item, idx) => (
+                    <motion.button
+                      key={item.id}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: idx * 0.08 }}
+                      onClick={() => scrollToSection(item.id)}
+                      className="text-white text-xl font-medium"
+                      style={{ 
+                        fontFamily: 'Montserrat, sans-serif',
+                        fontWeight: '500',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.1em'
+                      }}
+                    >
+                      {item.name}
+                    </motion.button>
+                  ))}
+                  </nav>
+                  
                   <motion.button
-                    key={item.id}
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: idx * 0.08 }}
-                    onClick={() => scrollToSection(item.id)}
-                    className="text-white text-xl font-medium"
+                    transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
+                    onClick={handleWhatsApp}
+                    className="
+                      bg-[#A89888] text-white px-8 py-4 rounded-full
+                      transition-all duration-300 mt-0
+                      hover:bg-[#8B7B6B] hover:shadow-lg
+                      text-sm font-medium
+                    "
                     style={{ 
                       fontFamily: 'Montserrat, sans-serif',
                       fontWeight: '500',
                       textTransform: 'uppercase',
-                      letterSpacing: '0.1em'
+                      letterSpacing: '0.08em'
                     }}
                   >
-                    {item.name}
+                    AGENDE SUA AVALIAÇÃO
                   </motion.button>
-                ))}
-                </nav>
-                
-                <motion.button
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
-                  onClick={handleWhatsApp}
-                  className="
-                    bg-[#A89888] text-white px-8 py-4 rounded-full
-                    transition-all duration-300 mt-0
-                    hover:bg-[#8B7B6B] hover:shadow-lg
-                    text-sm font-medium
-                  "
-                  style={{ 
-                    fontFamily: 'Montserrat, sans-serif',
-                    fontWeight: '500',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em'
-                  }}
-                >
-                  AGENDE SUA AVALIAÇÃO
-                </motion.button>
+                </div>
               </div>
             </div>
           </motion.div>
