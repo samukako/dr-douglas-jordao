@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
-const monograma = new URL("../assets/f2039f561624ab374594bc1881fa1d0bddda8abe.png", import.meta.url).href;
+import monograma from "../assets/f2039f561624ab374594bc1881fa1d0bddda8abe.png";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,32 +13,6 @@ export function Navigation() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const body = document.body;
-    if (isMobileMenuOpen) {
-      root.style.overflow = "hidden";
-      body.style.overflow = "hidden";
-    } else {
-      root.style.overflow = "";
-      body.style.overflow = "";
-    }
-    return () => {
-      root.style.overflow = "";
-      body.style.overflow = "";
-    };
-  }, [isMobileMenuOpen]);
-
-  useEffect(() => {
-    const onEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener("keydown", onEsc);
-    return () => window.removeEventListener("keydown", onEsc);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -126,8 +100,6 @@ export function Navigation() {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 text-white"
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -142,57 +114,49 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md md:hidden"
-            role="dialog"
-            aria-modal="true"
-            id="mobile-menu"
+            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md md:hidden"
+            style={{ paddingTop: '90px' }}
           >
-            <div className="relative h-[100svh] w-full px-6">
-              <div className="absolute left-1/2 top-[calc(50%+env(safe-area-inset-top)/2)] -translate-x-1/2 -translate-y-1/2 w-full">
-                <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-10 text-center">
-                  <nav className="flex w-full max-w-sm flex-col items-center gap-8 text-center">
-                  {menuItems.map((item, idx) => (
-                    <motion.button
-                      key={item.id}
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.3, delay: idx * 0.08 }}
-                      onClick={() => scrollToSection(item.id)}
-                      className="text-white text-xl font-medium"
-                      style={{ 
-                        fontFamily: 'Montserrat, sans-serif',
-                        fontWeight: '500',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.1em'
-                      }}
-                    >
-                      {item.name}
-                    </motion.button>
-                  ))}
-                  </nav>
-                  
-                  <motion.button
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
-                    onClick={handleWhatsApp}
-                    className="
-                      bg-[#A89888] text-white px-8 py-4 rounded-full
-                      transition-all duration-300 mt-0
-                      hover:bg-[#8B7B6B] hover:shadow-lg
-                      text-sm font-medium
-                    "
-                    style={{ 
-                      fontFamily: 'Montserrat, sans-serif',
-                      fontWeight: '500',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em'
-                    }}
-                  >
-                    AGENDE SUA AVALIAÇÃO
-                  </motion.button>
-                </div>
-              </div>
+            <div className="flex flex-col items-center justify-center min-h-screen space-y-8 px-6">
+              {menuItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3, delay: menuItems.indexOf(item) * 0.1 }}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-white text-xl font-medium"
+                  style={{ 
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontWeight: '500',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em'
+                  }}
+                >
+                  {item.name}
+                </motion.button>
+              ))}
+              
+              <motion.button
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
+                onClick={handleWhatsApp}
+                className="
+                  bg-[#A89888] text-white px-8 py-4 rounded-full
+                  transition-all duration-300 mt-8
+                  hover:bg-[#8B7B6B] hover:shadow-lg
+                  text-sm font-medium
+                "
+                style={{ 
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontWeight: '500',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em'
+                }}
+              >
+                AGENDE SUA AVALIAÇÃO
+              </motion.button>
             </div>
           </motion.div>
         )}
