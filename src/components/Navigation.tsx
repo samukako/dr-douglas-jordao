@@ -143,13 +143,13 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md md:hidden"
-            style={{ paddingTop: '56px' }}
+            style={{ paddingTop: '40px' }}
             role="dialog"
             aria-modal="true"
             id="mobile-menu"
           >
             <div className="flex min-h-screen flex-col items-center justify-center px-6">
-              <div className="flex w-full max-w-sm flex-col items-center text-center space-y-8 -mt-6">
+              <div className="flex w-full max-w-sm flex-col items-center text-center space-y-8 -mt-10">
                 <nav className="flex w-full max-w-sm flex-col items-center text-center space-y-6">
                   {menuItems.map((item, idx) => (
                     <motion.button
