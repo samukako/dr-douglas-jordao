@@ -7,13 +7,13 @@ export function Hero() {
   };
 
   return (
-    <section id="inicio" className="relative h-[100dvh] sm:h-[100svh] w-full overflow-hidden md:h-[90vh]">
+    <section id="inicio" className="relative h-[100lvh] w-full overflow-hidden md:h-[90vh]">
       {/* BG video cover, centralizado e cobrindo 100% */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <iframe
           src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
           title="Background Video"
-          className="absolute left-1/2 top-1/2 max-w-none pointer-events-none transform-gpu -translate-x-1/2 -translate-y-1/2 h-[240dvh] w-[426.67dvh] sm:h-[240svh] sm:w-[426.67svh] md:h-[130vh] md:w-[231.11vh]"
+          className="absolute left-1/2 top-1/2 max-w-none pointer-events-none transform-gpu -translate-x-1/2 -translate-y-[62%] md:-translate-y-1/2 h-[180lvh] w-[320lvh] md:h-[120vh] md:w-[213.33vh]"
           allow="autoplay; encrypted-media; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
           loading="eager"
@@ -24,7 +24,7 @@ export function Hero() {
       </div>
       
       {/* Conteúdo reposicionado com título com quebras diferentes para mobile/desktop */}
-      <div className="relative z-10 h-full flex items-center px-4 md:px-6 pt-16 md:pt-20">
+      <div className="relative z-10 h-full flex items-center px-4 md:px-6 pt-[calc(env(safe-area-inset-top)+64px)] md:pt-20">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center md:text-left text-white">
             {/* Título mobile - uma formatação */}
