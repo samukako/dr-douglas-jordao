@@ -15,6 +15,22 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+    if (isMobileMenuOpen) {
+      root.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+    } else {
+      root.style.overflow = "";
+      body.style.overflow = "";
+    }
+    return () => {
+      root.style.overflow = "";
+      body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false); // Fechar menu ao clicar em um link
@@ -114,10 +130,10 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md md:hidden"
-            style={{ paddingTop: '90px' }}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md md:hidden"
           >
-            <div className="flex flex-col items-center justify-center min-h-screen space-y-8 px-6">
+            <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 pt-[calc(env(safe-area-inset-top)+24px)] pb-[calc(env(safe-area-inset-bottom)+24px)]">
+              <nav className="flex w-full max-w-sm flex-col items-center gap-8 text-center">
               {menuItems.map((item) => (
                 <motion.button
                   key={item.id}
@@ -136,6 +152,7 @@ export function Navigation() {
                   {item.name}
                 </motion.button>
               ))}
+              </nav>
               
               <motion.button
                 initial={{ y: 20, opacity: 0 }}
@@ -144,7 +161,7 @@ export function Navigation() {
                 onClick={handleWhatsApp}
                 className="
                   bg-[#A89888] text-white px-8 py-4 rounded-full
-                  transition-all duration-300 mt-8
+                  transition-all duration-300 mt-10
                   hover:bg-[#8B7B6B] hover:shadow-lg
                   text-sm font-medium
                 "
