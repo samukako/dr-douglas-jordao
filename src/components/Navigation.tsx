@@ -143,7 +143,7 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md md:hidden"
-            style={{ paddingTop: '40px' }}
+            style={{ paddingTop: '24px' }}
             role="dialog"
             aria-modal="true"
             id="mobile-menu"
