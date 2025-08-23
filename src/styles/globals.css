@@ -208,20 +208,26 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Typography – prevent mid‑word breaks globally on headings */
+/* Typography – impedir quebras no meio da palavra (iOS/Android) */
 h1, h2, h3, h4, .title-main, .title-subtitle, .section-title, .heading, .title {
-  word-break: keep-all !important;      /* break only at spaces */
-  overflow-wrap: normal !important;     /* don't force breaks inside words */
-  hyphens: none !important;             /* disable automatic hyphenation */
-  white-space: normal !important;       /* allow lines to wrap normally */
+  word-break: keep-all !important;      /* só quebra em espaço */
+  overflow-wrap: normal !important;     /* não força no meio */
+  white-space: normal !important;       /* permite quebrar linhas */
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
 }
 
 /* Utility to enforce clean wrapping where needed */
 .no-break {
   word-break: keep-all !important;
   overflow-wrap: normal !important;
-  hyphens: none !important;
   white-space: normal !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
 }
 
 /* Títulos personalizados */
@@ -347,8 +353,11 @@ h1, h2, h3, h4, .title-main, .title-subtitle, .section-title, .heading, .title {
   h1, h2, h3, h4 {
     word-break: keep-all !important;      /* mantém palavras inteiras */
     overflow-wrap: normal !important;     /* quebra somente entre palavras */
-    hyphens: none !important;             /* sem hifenização automática */
     white-space: normal !important;       /* permite quebra de linha normal */
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
   }
 
   /* Margens e paddings ajustados */
