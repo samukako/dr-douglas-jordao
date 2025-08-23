@@ -404,7 +404,7 @@ export function MetodoFull() {
           className="text-center mb-16 md:mb-20"
         >
           <h3
-            className="tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl mb-8"
+            className="no-break break-keep hyphens-none whitespace-normal tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl mb-8"
             style={{
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 600,

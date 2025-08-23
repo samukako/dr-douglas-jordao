@@ -42,11 +42,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="md:hidden tracking-[0.12em] uppercase text-[20px] leading-tight mb-2 max-w-[90%] mx-auto"
+              className="md:hidden tracking-[0.12em] uppercase text-[20px] leading-tight mb-2 max-w-[90%] mx-auto break-words"
               style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}
             >
-              CUIDADO E EXCELÊNCIA<br />
-              EM CADA TRANSFORMAÇÃO
+              CUIDADO E EXCELÊNCIA EM CADA TRANSFORMAÇÃO
             </motion.h1>
 
             {/* Título desktop - duas linhas específicas */}
@@ -54,11 +53,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="hidden md:block tracking-[0.12em] uppercase text-[28px] md:leading-[1.15] lg:text-[32px] lg:leading-[1.15] xl:text-[36px] xl:leading-[1.10] mb-3 max-w-[420px] lg:max-w-[460px]"
+              className="hidden md:block tracking-[0.12em] uppercase text-[28px] md:leading-[1.15] lg:text-[32px] lg:leading-[1.15] xl:text-[36px] xl:leading-[1.10] mb-3 max-w-[420px] lg:max-w-[460px] break-words"
               style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}
             >
-              CUIDADO E EXCELÊNCIA<br />
-              EM CADA TRANSFORMAÇÃO
+              CUIDADO E EXCELÊNCIA EM CADA TRANSFORMAÇÃO
             </motion.h1>
             
             <motion.p

@@ -71,14 +71,14 @@ export function FAQ() {
               >
                 <details className="group rounded-2xl bg-white p-6 shadow">
                   <summary className="cursor-pointer list-none flex justify-between items-center">
-                    <span className="font-semibold" style={{ fontFamily: 'DM Sans, sans-serif' }}>
+                    <span className="font-semibold break-words" style={{ fontFamily: 'DM Sans, sans-serif' }}>
                       {faq.question}
                     </span>
                     <span className="transition-transform group-open:rotate-45 text-2xl">+</span>
                   </summary>
                   <div className="mt-3 space-y-2 text-[#1E1E1E]" style={{ fontFamily: 'DM Sans, sans-serif' }}>
                     {faq.answer.split('\n').map((line, i) => (
-                      <p key={i} className={line.startsWith('•') ? 'ml-4' : ''}>
+                      <p key={i} className={`${line.startsWith('•') ? 'ml-4' : ''} break-words`}>
                         {line}
                       </p>
                     ))}
@@ -99,14 +99,14 @@ export function FAQ() {
               >
                 <details className="group rounded-2xl bg-white p-6 shadow">
                   <summary className="cursor-pointer list-none flex justify-between items-center">
-                    <span className="font-semibold" style={{ fontFamily: 'DM Sans, sans-serif' }}>
+                    <span className="font-semibold break-words" style={{ fontFamily: 'DM Sans, sans-serif' }}>
                       {faq.question}
                     </span>
                     <span className="transition-transform group-open:rotate-45 text-2xl">+</span>
                   </summary>
                   <div className="mt-3 space-y-2 text-[#1E1E1E]" style={{ fontFamily: 'DM Sans, sans-serif' }}>
                     {faq.answer.split('\n').map((line, i) => (
-                      <p key={i} className={line.startsWith('•') ? 'ml-4' : ''}>
+                      <p key={i} className={`${line.startsWith('•') ? 'ml-4' : ''} break-words`}>
                         {line}
                       </p>
                     ))}
