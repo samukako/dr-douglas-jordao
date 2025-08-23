@@ -54,3 +54,35 @@ h1, h2, h3, h4,
     -ms-hyphens: none !important;
   }
 }
+
+/* --- Hard kill hyphenation everywhere (including Tailwind Typography .prose) --- */
+:root, html, body,
+h1, h2, h3, h4, h5, h6,
+p, span, strong, em, a, li, blockquote {
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important; /* break only at spaces */
+  white-space: normal !important;
+}
+
+/* If using Tailwind Typography */
+.prose, .prose * {
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  white-space: normal !important;
+}
+
+/* Language-specific safety for Portuguese */
+[lang|="pt"], :root:lang(pt) {
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+}
