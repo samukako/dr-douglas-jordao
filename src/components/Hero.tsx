@@ -23,9 +23,10 @@ export function Hero() {
               lg:h-[145%] lg:w-[200%]
               pointer-events-none
             "
-          allow="autoplay; encrypted-media; picture-in-picture"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowFullScreen
           referrerPolicy="strict-origin-when-cross-origin"
-          loading="lazy"
+          loading="eager"
           style={{ border: 'none', pointerEvents: 'none' }}
         />
         {/* overlay mais claro para deixar o fundo menos escuro */}
