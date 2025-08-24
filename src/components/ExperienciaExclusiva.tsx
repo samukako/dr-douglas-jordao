@@ -29,10 +29,31 @@ export function ExperienciaExclusiva() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16 md:mb-24"
         >
-          <h2 className="tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl text-[#1E1E1E] mb-8 break-words" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
+          <h2
+            className="tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl text-[#1E1E1E] mb-8 break-normal"
+            style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontWeight: 600,
+              hyphens: 'none',
+              WebkitHyphens: 'none',
+              MozHyphens: 'none',
+              wordBreak: 'keep-all',
+              overflowWrap: 'normal'
+            }}
+          >
             O QUE TORNA ESSA EXPERIÊNCIA ÚNICA
           </h2>
-          <p className="text-lg md:text-xl text-[#1E1E1E]/70 max-w-3xl mx-auto" style={{ fontFamily: 'DM Sans, sans-serif' }}>
+          <p
+            className="text-lg md:text-xl text-[#1E1E1E]/70 max-w-3xl mx-auto break-normal"
+            style={{
+              fontFamily: 'DM Sans, sans-serif',
+              hyphens: 'none',
+              WebkitHyphens: 'none',
+              MozHyphens: 'none',
+              wordBreak: 'keep-all',
+              overflowWrap: 'normal'
+            }}
+          >
             Três pilares fundamentais que definem nossa abordagem premium
           </p>
         </motion.div>
@@ -53,11 +74,34 @@ export function ExperienciaExclusiva() {
                   </div>
                 </div>
                 
-                <h3 className="text-lg md:text-xl text-[#1E1E1E] mb-4 md:mb-6 text-center title-subtitle break-words" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                <h3
+                  className="text-lg md:text-xl text-[#1E1E1E] mb-4 md:mb-6 text-center title-subtitle break-normal"
+                  style={{
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontWeight: '500',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    hyphens: 'none',
+                    WebkitHyphens: 'none',
+                    MozHyphens: 'none',
+                    wordBreak: 'keep-all',
+                    overflowWrap: 'normal'
+                  }}
+                >
                   {feature.title}
                 </h3>
                 
-                <p className="text-[#1E1E1E]/70 leading-relaxed text-center text-base md:text-lg break-words" style={{ fontFamily: 'DM Sans, sans-serif' }}>
+                <p
+                  className="text-[#1E1E1E]/70 leading-relaxed text-center text-base md:text-lg break-normal"
+                  style={{
+                    fontFamily: 'DM Sans, sans-serif',
+                    hyphens: 'none',
+                    WebkitHyphens: 'none',
+                    MozHyphens: 'none',
+                    wordBreak: 'keep-all',
+                    overflowWrap: 'normal'
+                  }}
+                >
                   {feature.description}
                 </p>
               </div>
@@ -75,10 +119,31 @@ export function ExperienciaExclusiva() {
           className="text-center mt-16 md:mt-24"
         >
           <div className="bg-[#1E1E1E] text-white py-12 md:py-16 px-8 md:px-12 rounded-3xl max-w-4xl mx-auto">
-            <p className="text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 italic break-words" style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: '500' }}>
+            <p
+              className="text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6 italic break-normal"
+              style={{
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: '500',
+                hyphens: 'none',
+                WebkitHyphens: 'none',
+                MozHyphens: 'none',
+                wordBreak: 'keep-all',
+                overflowWrap: 'normal'
+              }}
+            >
               "A excelência está nos detalhes e no cuidado com cada paciente"
             </p>
-            <p className="text-base md:text-lg opacity-80 break-words" style={{ fontFamily: 'DM Sans, sans-serif' }}>
+            <p
+              className="text-base md:text-lg opacity-80 break-normal"
+              style={{
+                fontFamily: 'DM Sans, sans-serif',
+                hyphens: 'none',
+                WebkitHyphens: 'none',
+                MozHyphens: 'none',
+                wordBreak: 'keep-all',
+                overflowWrap: 'normal'
+              }}
+            >
               Dr. Douglas Jordão
             </p>
           </div>
