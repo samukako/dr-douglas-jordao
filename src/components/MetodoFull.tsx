@@ -236,7 +236,7 @@ export function MetodoFull() {
           className="text-center mb-16 md:mb-20"
         >
           <h2
-            className="tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl text-[#1E1E1E] mb-8"
+            className="tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl text-[#1E1E1E] mb-8 no-hyphens break-normal"
             style={{
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 600,
@@ -258,7 +258,7 @@ export function MetodoFull() {
           >
             <div>
               <h3
-                className="tracking-[0.12em] uppercase text-lg md:text-xl lg:text-2xl text-center mb-8"
+                className="tracking-[0.12em] uppercase text-lg md:text-xl lg:text-2xl text-center mb-8 no-hyphens break-normal"
                 style={{
                   fontFamily: "Montserrat, sans-serif",
                   fontWeight: 600,
@@ -268,7 +268,7 @@ export function MetodoFull() {
               </h3>
 
               <p
-                className="text-center text-lg mb-8"
+                className="text-center text-lg mb-8 no-hyphens break-normal"
                 style={{
                   fontFamily: "DM Sans, sans-serif",
                   fontWeight: 500,
@@ -282,18 +282,18 @@ export function MetodoFull() {
               className="space-y-6 text-[#1E1E1E] text-lg leading-relaxed"
               style={{ fontFamily: "DM Sans, sans-serif" }}
             >
-              <p>
+              <p className="no-hyphens break-normal">
                 Criado pelo Dr. Douglas Jordão, o Método Full é um protocolo exclusivo de harmonização facial, pensado para homens e mulheres a partir dos 40 anos que desejam rejuvenescer sem perder sua identidade.
               </p>
 
-              <p>
+              <p className="no-hyphens break-normal">
                 Ele trata os sinais do tempo, como a queda facial, o semblante cansado e a perda dos contornos — de forma estratégica, combinando sensibilidade estética com precisão técnica.
               </p>
             </div>
 
             <div className="bg-[#A89888] text-white p-4 md:p-6 lg:p-8 rounded-2xl">
               <h4
-                className="text-xl mb-4 title-subtitle"
+                className="text-xl mb-4 title-subtitle no-hyphens break-normal"
                 style={{
                   fontFamily: "Montserrat, sans-serif",
                   fontWeight: "500",
@@ -304,7 +304,7 @@ export function MetodoFull() {
                 É PRA VOCÊ?
               </h4>
               <p
-                className="text-lg"
+                className="text-lg no-hyphens break-normal"
                 style={{ fontFamily: "DM Sans, sans-serif" }}
               >
                 Se ao se olhar no espelho você sente que o tempo tirou parte da sua energia e leveza, o Método Full pode devolver o que foi perdido — com técnica, elegância e total respeito à sua essência.
@@ -360,7 +360,7 @@ export function MetodoFull() {
           >
             <div>
               <h3
-                className="tracking-[0.12em] uppercase text-lg md:text-xl lg:text-2xl text-center mb-8"
+                className="tracking-[0.12em] uppercase text-lg md:text-xl lg:text-2xl text-center mb-8 no-hyphens break-normal"
                 style={{
                   fontFamily: "Montserrat, sans-serif",
                   fontWeight: 600,
@@ -370,7 +370,7 @@ export function MetodoFull() {
               </h3>
 
               <p
-                className="text-center text-lg mb-8"
+                className="text-center text-lg mb-8 no-hyphens break-normal"
                 style={{
                   fontFamily: "DM Sans, sans-serif",
                   fontWeight: 500,
@@ -408,7 +408,7 @@ export function MetodoFull() {
                   className="bg-[#EAE6E1] p-4 rounded-xl"
                 >
                   <h5
-                    className="font-semibold mb-2 title-subtitle"
+                    className="font-semibold mb-2 title-subtitle no-hyphens break-normal"
                     style={{
                       fontFamily: "Montserrat, sans-serif",
                       fontSize: "14px",
@@ -419,6 +419,7 @@ export function MetodoFull() {
                     {item.title}:
                   </h5>
                   <p
+                    className="no-hyphens break-normal"
                     style={{
                       fontFamily: "DM Sans, sans-serif",
                     }}
@@ -465,7 +466,7 @@ export function MetodoFull() {
           className="text-center mb-16 md:mb-20"
         >
           <h3
-            className="no-break break-keep hyphens-none whitespace-normal tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl mb-8"
+            className="no-hyphens break-normal whitespace-normal tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl mb-8"
             style={{
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 600,
@@ -489,6 +490,7 @@ export function MetodoFull() {
                   ✔
                 </span>
                 <p
+                  className="no-hyphens break-normal"
                   style={{ fontFamily: "DM Sans, sans-serif" }}
                 >
                   {item}
@@ -506,7 +508,7 @@ export function MetodoFull() {
           className="text-center"
         >
           <h3
-            className="text-2xl md:text-3xl lg:text-4xl mb-8 md:mb-12 tracking-[0.12em] uppercase text-center"
+            className="text-2xl md:text-3xl lg:text-4xl mb-8 md:mb-12 tracking-[0.12em] uppercase text-center no-hyphens break-normal"
             style={{
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 600,
