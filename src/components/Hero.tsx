@@ -62,7 +62,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-[100dvh] md:h-screen w-full overflow-hidden">
+    <section id="inicio" className="relative h-screen w-full overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
       <div className="absolute inset-0 overflow-hidden">
         <iframe
@@ -71,7 +71,7 @@ export function Hero() {
           title="Background Video"
           className="
                 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                h-[520%] w-[520%]
+                h-[600%] w-[600%]
                 md:h-[250%] md:w-[350%]
                 lg:h-[145%] lg:w-[200%]
                 pointer-events-none
@@ -83,7 +83,7 @@ export function Hero() {
           style={{ border: 'none', pointerEvents: 'none' }}
         />
         {/* overlay mais claro para deixar o fundo menos escuro */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 md:from-black/70 md:via-black/60 md:to-black/75 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/40 pointer-events-none"></div>
       </div>
       
