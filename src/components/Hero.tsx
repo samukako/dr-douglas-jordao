@@ -62,7 +62,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="inicio" className="relative h-screen w-full overflow-hidden">
+    <section id="inicio" className="relative h-[100svh] md:h-screen w-full overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
       <div className="absolute inset-0 overflow-hidden">
         <iframe
@@ -71,7 +71,7 @@ export function Hero() {
           title="Background Video"
           className="
                 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                h-[600%] w-[600%]
+                h-[120svh] w-[220svw]
                 md:h-[250%] md:w-[350%]
                 lg:h-[145%] lg:w-[200%]
                 pointer-events-none
