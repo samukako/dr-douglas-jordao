@@ -468,8 +468,13 @@ export function MetodoFull() {
           <h3
             className="no-hyphens break-normal whitespace-normal tracking-[0.12em] uppercase text-2xl md:text-3xl lg:text-4xl mb-8"
             style={{
-              fontFamily: "Montserrat, sans-serif",
+              fontFamily: 'Montserrat, sans-serif',
               fontWeight: 600,
+              hyphens: 'none',
+              WebkitHyphens: 'none',
+              MozHyphens: 'none',
+              wordBreak: 'keep-all',
+              overflowWrap: 'normal'
             }}
           >
             O QUE O MÉTODO ENTREGA?
