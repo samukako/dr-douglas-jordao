@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import beforeAfter1 from "../assets/f827ec8b74a5e71203404bff7328635e97412b6f.png";
 import beforeAfter2 from "../assets/6003a53fcd61ceb62833e842ec4f74755e82f078.png";
@@ -90,7 +90,7 @@ function ResultadosReais({
           {imagens.map((img, i) => (
             <div
               key={i}
-              className="flex-none box-border p-2" // padding interno não quebra o cálculo
+              className="flex-none box-border p-2"
               style={{ width: `${100 / visible}%` }}
             >
               <div className="w-full rounded-2xl shadow-lg overflow-hidden bg-white">
@@ -162,6 +162,65 @@ export function MetodoFull() {
     { src: beforeAfter8, alt: "Antes e depois 8" },
     { src: beforeAfter9, alt: "Antes e depois 9" },
   ];
+
+  const metodoIframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const el = metodoIframeRef.current;
+    if (!el) return;
+
+    // Garante 'origin' na URL (exigido em alguns contextos para a API do YouTube)
+    try {
+      const url = new URL(el.src, window.location.origin);
+      if (!url.searchParams.get('origin')) {
+        url.searchParams.set('origin', window.location.origin);
+        el.src = url.toString();
+      }
+    } catch {}
+
+    const post = (func: 'mute' | 'playVideo') => {
+      el.contentWindow?.postMessage(
+        JSON.stringify({ event: 'command', func, args: [] }),
+        '*'
+      );
+    };
+
+    const tryPlay = () => {
+      post('mute');
+      post('playVideo');
+    };
+
+    // Tenta imediatamente e após um pequeno atraso
+    tryPlay();
+    const t = setTimeout(tryPlay, 800);
+
+    // Reproduz quando o iframe entrar no viewport
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+            tryPlay();
+          }
+        });
+      },
+      { threshold: [0.1] }
+    );
+    io.observe(el);
+
+    // Fallback: primeira interação do usuário
+    const onFirstInteraction = () => tryPlay();
+    const winEvents: (keyof WindowEventMap)[] = ['touchstart', 'click', 'scroll', 'keydown'];
+    const docEvents: (keyof DocumentEventMap)[] = ['visibilitychange'];
+    winEvents.forEach((ev) => window.addEventListener(ev, onFirstInteraction, { once: true, passive: true } as any));
+    docEvents.forEach((ev) => document.addEventListener(ev, onFirstInteraction, { once: true, passive: true } as any));
+
+    return () => {
+      clearTimeout(t);
+      io.disconnect();
+      winEvents.forEach((ev) => window.removeEventListener(ev, onFirstInteraction));
+      docEvents.forEach((ev) => document.removeEventListener(ev, onFirstInteraction));
+    };
+  }, []);
 
   return (
     <section
@@ -279,12 +338,14 @@ export function MetodoFull() {
             <div className="w-full max-w-lg rounded-2xl overflow-hidden shadow-xl bg-black pointer-events-none"
                  style={{ aspectRatio: '3/4' }}>
               <iframe
+                ref={metodoIframeRef}
                 src="https://www.youtube.com/embed/QwwhzdW-sx8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=QwwhzdW-sx8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
                 title="Método Full - Demonstração"
                 className="w-full h-full pointer-events-none"
-                allow="autoplay; encrypted-media; picture-in-picture"
+                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                allowFullScreen
                 referrerPolicy="strict-origin-when-cross-origin"
-                loading="lazy"
+                loading="eager"
                 style={{ border: 'none', objectFit: 'cover', pointerEvents: 'none' }}
               />
             </div>
