@@ -1,16 +1,72 @@
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
+import { useEffect, useRef } from "react";
 
 export function Hero() {
   const handleWhatsApp = () => {
     window.open("https://wa.me/5551996305040", "_blank");
   };
 
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const el = iframeRef.current;
+    if (!el) return;
+
+    // Garante 'origin' na URL (alguns contextos exigem para a API do YouTube)
+    try {
+      const url = new URL(el.src, window.location.origin);
+      if (!url.searchParams.get('origin')) {
+        url.searchParams.set('origin', window.location.origin);
+        el.src = url.toString();
+      }
+    } catch {}
+
+    const post = (func: 'mute' | 'playVideo') => {
+      el.contentWindow?.postMessage(
+        JSON.stringify({ event: 'command', func, args: [] }),
+        '*'
+      );
+    };
+
+    const tryPlay = () => {
+      post('mute');
+      post('playVideo');
+    };
+
+    // Tenta imediatamente e após um pequeno atraso (alguns iOS precisam)
+    tryPlay();
+    const t = setTimeout(tryPlay, 800);
+
+    // Fallback: primeira interação do usuário (quando Low Power Mode bloqueia autoplay)
+    const onFirstInteraction = () => {
+      tryPlay();
+    };
+
+    // Eventos de janela e documento (visibilitychange é do document)
+    const winEvents: (keyof WindowEventMap)[] = ['touchstart', 'click', 'scroll', 'keydown'];
+    const docEvents: (keyof DocumentEventMap)[] = ['visibilitychange'];
+
+    winEvents.forEach((ev) =>
+      window.addEventListener(ev, onFirstInteraction, { once: true, passive: true } as any)
+    );
+    docEvents.forEach((ev) =>
+      document.addEventListener(ev, onFirstInteraction, { once: true, passive: true } as any)
+    );
+
+    return () => {
+      clearTimeout(t);
+      winEvents.forEach((ev) => window.removeEventListener(ev, onFirstInteraction));
+      docEvents.forEach((ev) => document.removeEventListener(ev, onFirstInteraction));
+    };
+  }, []);
+
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
       <div className="absolute inset-0 overflow-hidden">
         <iframe
+          ref={iframeRef}
           src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
           title="Background Video"
           className="
