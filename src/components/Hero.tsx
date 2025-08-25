@@ -74,7 +74,7 @@ export function Hero() {
                 h-[120svh] w-[213svh] min-w-[100vw]
                 md:h-[250%] md:w-[350%]
                 lg:h-[145%] lg:w-[200%]
-                origin-center scale-[1.6] md:scale-100
+                origin-center scale-[2] md:scale-100
                 pointer-events-none
               "
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
