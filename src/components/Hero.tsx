@@ -148,13 +148,13 @@ export function Hero() {
       {/* Conteúdo reposicionado com título com quebras diferentes para mobile/desktop */}
       <div className="relative z-10 h-full flex items-center px-4 md:px-6">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center md:text-left text-white">
+          <div className="text-left text-white">
             {/* Título mobile - uma formatação */}
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="md:hidden tracking-[0.12em] uppercase text-[20px] leading-tight mb-2 max-w-[90%] mx-auto break-normal"
+              className="md:hidden tracking-[0.12em] uppercase text-[20px] leading-tight mb-2 max-w-[90%] break-normal"
               style={{
                 fontFamily: 'Montserrat, sans-serif',
                 fontWeight: 600,
@@ -197,7 +197,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="text-sm md:text-base lg:text-lg mb-4 md:mb-5 lg:mb-6 opacity-90 md:max-w-xl leading-relaxed"
+              className="max-w-[90%] text-sm md:text-base lg:text-lg mb-4 md:mb-5 lg:mb-6 opacity-90 md:max-w-xl leading-relaxed"
               style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: '400' }}
             >
               Conheça o Método Full, criado pelo Dr. Douglas Jordão para revelar o melhor da sua essência
