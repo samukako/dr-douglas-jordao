@@ -8,7 +8,6 @@ export function Hero() {
   };
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = iframeRef.current;
@@ -62,90 +61,40 @@ export function Hero() {
     };
   }, []);
 
-  useEffect(() => {
-    const el = iframeRef.current;
-    const container = containerRef.current;
-    if (!el || !container) return;
-
-    const ZOOM = 1.25; // pequeno zoom para garantir cobertura sem barras
-    const applyCover = () => {
-      // aplica apenas no mobile (< md)
-      const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-      if (isDesktop) {
-        // limpa estilos inline no desktop para usar classes md/lg
-        el.style.width = '';
-        el.style.height = '';
-        el.style.top = '50%';
-        el.style.left = '50%';
-        el.style.transform = 'translate(-50%, -50%)';
-        return;
-      }
-
-      const rect = container.getBoundingClientRect();
-      const cw = rect.width;
-      const ch = rect.height;
-      if (!cw || !ch) return;
-
-      const videoAR = 16 / 9; // AR do YouTube
-      const containerAR = cw / ch;
-
-      let targetW: number;
-      let targetH: number;
-
-      if (containerAR > videoAR) {
-        // container mais "largo" -> baseia na largura do container
-        targetW = cw * ZOOM;
-        targetH = (targetW / videoAR);
-      } else {
-        // container mais "alto" -> baseia na altura do container
-        targetH = ch * ZOOM;
-        targetW = (targetH * videoAR);
-      }
-
-      // aplica tamanhos inline (px) e mantém centralizado
-      el.style.width = `${Math.ceil(targetW)}px`;
-      el.style.height = `${Math.ceil(targetH)}px`;
-      el.style.top = '50%';
-      el.style.left = '50%';
-      el.style.transform = 'translate(-50%, -50%)';
-    };
-
-    // Observers e eventos
-    const ro = new ResizeObserver(applyCover);
-    ro.observe(container);
-    window.addEventListener('resize', applyCover);
-    window.addEventListener('orientationchange', applyCover);
-
-    // primeira aplicação
-    applyCover();
-
-    return () => {
-      ro.disconnect();
-      window.removeEventListener('resize', applyCover);
-      window.removeEventListener('orientationchange', applyCover);
-    };
-  }, []);
-
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
-      <div ref={containerRef} className="absolute inset-0 overflow-hidden">
-        <iframe
-          ref={iframeRef}
-          src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
-          title="Background Video"
-          className="
-                absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                pointer-events-none
-                md:h-[250%] md:w-[350%]
-                lg:h-[145%] lg:w-[200%]
-              "
-          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-          loading="eager"
-          style={{ border: 'none', pointerEvents: 'none' }}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Mobile: usar <video> nativo para permitir cover/zoom real (iOS ignora transform em iframes de vídeo) */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
+          src="/videos/hero-mobile.mp4"
+          muted
+          playsInline
+          autoPlay
+          loop
+          preload="auto"
+          poster="/videos/hero-poster.jpg"
+          style={{ pointerEvents: 'none' }}
         />
+        <div className="hidden md:block absolute inset-0 overflow-hidden">
+          <iframe
+            ref={iframeRef}
+            src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+            title="Background Video"
+            className="
+                  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                  md:h-[250%] md:w-[350%]
+                  lg:h-[145%] lg:w-[200%]
+                  pointer-events-none
+                "
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            loading="eager"
+            style={{ border: 'none', pointerEvents: 'none' }}
+          />
+        </div>
         {/* overlay mais claro para deixar o fundo menos escuro */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/40 pointer-events-none"></div>
