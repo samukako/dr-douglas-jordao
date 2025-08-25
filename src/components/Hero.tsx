@@ -65,24 +65,36 @@ export function Hero() {
     <section id="inicio" className="relative h-screen w-full overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
       <div className="absolute inset-0 overflow-hidden">
-        <iframe
-          ref={iframeRef}
-          src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
-          title="Background Video"
-          className="
-                absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                h-[120svh] w-[213svh] min-w-[100vw]
-                md:h-[250%] md:w-[350%]
-                lg:h-[145%] lg:w-[200%]
-                origin-center scale-[2] md:scale-100
-                pointer-events-none
-              "
-          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-          allowFullScreen
-          referrerPolicy="strict-origin-when-cross-origin"
-          loading="eager"
-          style={{ border: 'none', pointerEvents: 'none' }}
+        {/* Mobile: usar <video> nativo para permitir cover/zoom real (iOS ignora transform em iframes de vídeo) */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
+          src="/videos/hero-mobile.mp4"
+          muted
+          playsInline
+          autoPlay
+          loop
+          preload="auto"
+          poster="/videos/hero-poster.jpg"
+          style={{ pointerEvents: 'none' }}
         />
+        <div className="hidden md:block absolute inset-0 overflow-hidden">
+          <iframe
+            ref={iframeRef}
+            src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+            title="Background Video"
+            className="
+                  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                  md:h-[250%] md:w-[350%]
+                  lg:h-[145%] lg:w-[200%]
+                  pointer-events-none
+                "
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            loading="eager"
+            style={{ border: 'none', pointerEvents: 'none' }}
+          />
+        </div>
         {/* overlay mais claro para deixar o fundo menos escuro */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/40 pointer-events-none"></div>
