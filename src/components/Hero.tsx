@@ -71,7 +71,7 @@ export function Hero() {
           title="Background Video"
           className="
                 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                h-[100svh] w-[178svh] min-w-[100vw]
+                h-[125svh] w-[224svh] min-w-[100vw]
                 md:h-[250%] md:w-[350%]
                 lg:h-[145%] lg:w-[200%]
                 pointer-events-none
