@@ -165,7 +165,10 @@ export function Hero() {
                 overflowWrap: 'normal'
               }}
             >
-              CUIDADO E EXCELÊNCIA EM CADA TRANSFORMAÇÃO
+              CUIDADO E <br />
+              EXCELÊNCIA <br />
+              EM CADA <br />
+              TRANSFORMAÇÃO
             </motion.h1>
 
             {/* Título desktop - duas linhas específicas */}
@@ -184,7 +187,10 @@ export function Hero() {
                 overflowWrap: 'normal'
               }}
             >
-              CUIDADO E EXCELÊNCIA EM CADA TRANSFORMAÇÃO
+              CUIDADO E <br />
+              EXCELÊNCIA <br />
+              EM CADA <br />
+              TRANSFORMAÇÃO
             </motion.h1>
             
             <motion.p
