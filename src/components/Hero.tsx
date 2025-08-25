@@ -65,18 +65,20 @@ export function Hero() {
     <section id="inicio" className="relative h-screen w-full overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Mobile: usar <video> nativo para permitir cover/zoom real (iOS ignora transform em iframes de vídeo) */}
-        <video
-          className="absolute inset-0 h-full w-full object-cover md:hidden"
-          src="/videos/hero-mobile.mp4"
-          muted
-          playsInline
-          autoPlay
-          loop
-          preload="auto"
-          poster="/videos/hero-poster.jpg"
-          style={{ pointerEvents: 'none' }}
-        />
+        {/* Mobile: iframe replacing video */}
+        <div className="absolute inset-0 md:hidden overflow-hidden">
+          <iframe
+            ref={iframeRef}
+            src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+            title="Background Video"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full pointer-events-none md:hidden"
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            loading="eager"
+            style={{ border: 'none', pointerEvents: 'none' }}
+          />
+        </div>
         <div className="hidden md:block absolute inset-0 overflow-hidden">
           <iframe
             ref={iframeRef}
