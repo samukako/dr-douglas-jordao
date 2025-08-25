@@ -8,13 +8,11 @@ export function Hero() {
   };
 
   const mobileIframeRef1 = useRef<HTMLIFrameElement>(null);
-  const mobileIframeRef2 = useRef<HTMLIFrameElement>(null);
   const desktopIframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     const iframes: (HTMLIFrameElement | null)[] = [
       mobileIframeRef1.current,
-      mobileIframeRef2.current,
       desktopIframeRef.current,
     ];
 
@@ -92,27 +90,12 @@ export function Hero() {
       {/* BG video cover, sem tarjas, centralizado */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Mobile: duas instâncias empilhadas do mesmo iframe (reproduzem juntas) */}
-        <div className="absolute inset-0 md:hidden grid grid-rows-2 gap-0 h-full w-full overflow-hidden">
-          {/* Top video */}
-          <div className="relative overflow-hidden m-0 p-0">
+        <div className="absolute inset-0 md:hidden h-full w-full overflow-hidden">
+          <div className="relative overflow-hidden m-0 p-0 h-full w-full">
             <iframe
               ref={mobileIframeRef1}
-              src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
-              title="Background Video 1"
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full pointer-events-none"
-              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-              loading="eager"
-              style={{ border: "none", pointerEvents: "none" }}
-            />
-          </div>
-          {/* Bottom video */}
-          <div className="relative overflow-hidden m-0 p-0">
-            <iframe
-              ref={mobileIframeRef2}
-              src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
-              title="Background Video 2"
+              src="https://www.youtube.com/embed/c54nIIeS-zQ?autoplay=1&mute=1&playsinline=1&loop=1&playlist=c54nIIeS-zQ&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+              title="Background Video Mobile"
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full pointer-events-none"
               allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
               allowFullScreen
