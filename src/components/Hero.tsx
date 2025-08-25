@@ -7,57 +7,83 @@ export function Hero() {
     window.open("https://wa.me/5551996305040", "_blank");
   };
 
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const mobileIframeRef1 = useRef<HTMLIFrameElement>(null);
+  const mobileIframeRef2 = useRef<HTMLIFrameElement>(null);
+  const desktopIframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    const el = iframeRef.current;
-    if (!el) return;
+    const iframes: (HTMLIFrameElement | null)[] = [
+      mobileIframeRef1.current,
+      mobileIframeRef2.current,
+      desktopIframeRef.current,
+    ];
 
-    // Garante 'origin' na URL (alguns contextos exigem para a API do YouTube)
-    try {
-      const url = new URL(el.src, window.location.origin);
-      if (!url.searchParams.get('origin')) {
-        url.searchParams.set('origin', window.location.origin);
-        el.src = url.toString();
-      }
-    } catch {}
+    const ensureOriginOn = (el: HTMLIFrameElement) => {
+      try {
+        const url = new URL(el.src, window.location.origin);
+        if (!url.searchParams.get("origin")) {
+          url.searchParams.set("origin", window.location.origin);
+          el.src = url.toString();
+        }
+      } catch {}
+    };
 
-    const post = (func: 'mute' | 'playVideo') => {
+    const post = (el: HTMLIFrameElement, func: "mute" | "playVideo") => {
       el.contentWindow?.postMessage(
-        JSON.stringify({ event: 'command', func, args: [] }),
-        '*'
+        JSON.stringify({ event: "command", func, args: [] }),
+        "*"
       );
     };
 
-    const tryPlay = () => {
-      post('mute');
-      post('playVideo');
+    const tryPlayAll = () => {
+      iframes.forEach((el) => {
+        if (!el) return;
+        post(el, "mute");
+        post(el, "playVideo");
+      });
     };
 
-    // Tenta imediatamente e após um pequeno atraso (alguns iOS precisam)
-    tryPlay();
-    const t = setTimeout(tryPlay, 800);
+    // prepare iframes
+    iframes.forEach((el) => el && ensureOriginOn(el));
 
-    // Fallback: primeira interação do usuário (quando Low Power Mode bloqueia autoplay)
+    // immediate tries and a delayed retry (helps iOS)
+    tryPlayAll();
+    const t = setTimeout(tryPlayAll, 800);
+
+    // Fallback on first interaction (Low Power Mode etc.)
     const onFirstInteraction = () => {
-      tryPlay();
+      tryPlayAll();
     };
 
-    // Eventos de janela e documento (visibilitychange é do document)
-    const winEvents: (keyof WindowEventMap)[] = ['touchstart', 'click', 'scroll', 'keydown'];
-    const docEvents: (keyof DocumentEventMap)[] = ['visibilitychange'];
+    const winEvents: (keyof WindowEventMap)[] = [
+      "touchstart",
+      "click",
+      "scroll",
+      "keydown",
+    ];
+    const docEvents: (keyof DocumentEventMap)[] = ["visibilitychange"];
 
     winEvents.forEach((ev) =>
-      window.addEventListener(ev, onFirstInteraction, { once: true, passive: true } as any)
+      window.addEventListener(ev, onFirstInteraction, {
+        once: true,
+        passive: true,
+      } as any)
     );
     docEvents.forEach((ev) =>
-      document.addEventListener(ev, onFirstInteraction, { once: true, passive: true } as any)
+      document.addEventListener(ev, onFirstInteraction, {
+        once: true,
+        passive: true,
+      } as any)
     );
 
     return () => {
       clearTimeout(t);
-      winEvents.forEach((ev) => window.removeEventListener(ev, onFirstInteraction));
-      docEvents.forEach((ev) => document.removeEventListener(ev, onFirstInteraction));
+      winEvents.forEach((ev) =>
+        window.removeEventListener(ev, onFirstInteraction)
+      );
+      docEvents.forEach((ev) =>
+        document.removeEventListener(ev, onFirstInteraction)
+      );
     };
   }, []);
 
@@ -65,23 +91,40 @@ export function Hero() {
     <section id="inicio" className="relative h-screen w-full overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Mobile: iframe replacing video */}
-        <div className="absolute inset-0 md:hidden overflow-hidden">
-          <iframe
-            ref={iframeRef}
-            src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
-            title="Background Video"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full pointer-events-none md:hidden"
-            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-            allowFullScreen
-            referrerPolicy="strict-origin-when-cross-origin"
-            loading="eager"
-            style={{ border: 'none', pointerEvents: 'none' }}
-          />
+        {/* Mobile: duas instâncias empilhadas do mesmo iframe (reproduzem juntas) */}
+        <div className="absolute inset-0 md:hidden grid grid-rows-2 gap-0 h-full w-full overflow-hidden">
+          {/* Top video */}
+          <div className="relative overflow-hidden m-0 p-0">
+            <iframe
+              ref={mobileIframeRef1}
+              src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+              title="Background Video 1"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full pointer-events-none"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              loading="eager"
+              style={{ border: "none", pointerEvents: "none" }}
+            />
+          </div>
+          {/* Bottom video */}
+          <div className="relative overflow-hidden m-0 p-0">
+            <iframe
+              ref={mobileIframeRef2}
+              src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+              title="Background Video 2"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full pointer-events-none"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              loading="eager"
+              style={{ border: "none", pointerEvents: "none" }}
+            />
+          </div>
         </div>
         <div className="hidden md:block absolute inset-0 overflow-hidden">
           <iframe
-            ref={iframeRef}
+            ref={desktopIframeRef}
             src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
             title="Background Video"
             className="
