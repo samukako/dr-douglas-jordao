@@ -104,7 +104,7 @@ export function Tecnologia3D() {
       <div className="absolute inset-0 overflow-hidden">
         <iframe
           ref={bgIframeRef}
-          src="https://www.youtube.com/embed/zU6q_a-cAjU?autoplay=1&mute=1&playsinline=1&loop=1&playlist=zU6q_a-cAjU&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+          src="https://www.youtube.com/embed/hLyS1HvtmXE?autoplay=1&mute=1&playsinline=1&loop=1&playlist=hLyS1HvtmXE&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
           title="Background Technology Video"
           className="
               absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
