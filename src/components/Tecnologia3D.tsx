@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 
 export function Tecnologia3D() {
   const bgIframeRef = useRef<HTMLIFrameElement>(null);
+  const bgDesktopIframeRef = useRef<HTMLIFrameElement>(null);
   const mainIframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -53,12 +54,15 @@ export function Tecnologia3D() {
     const tryPlayAll = () => {
       post(bgIframeRef.current, 'mute');
       post(bgIframeRef.current, 'playVideo');
+      post(bgDesktopIframeRef.current, 'mute');
+      post(bgDesktopIframeRef.current, 'playVideo');
       post(mainIframeRef.current, 'mute');
       post(mainIframeRef.current, 'playVideo');
     };
 
     // Normaliza e tenta tocar
     normalize(bgIframeRef.current);
+    normalize(bgDesktopIframeRef.current);
     normalize(mainIframeRef.current);
     tryPlayAll();
     const t = setTimeout(tryPlayAll, 800);
@@ -101,30 +105,38 @@ export function Tecnologia3D() {
   return (
     <section className="py-16 md:py-24 px-4 md:px-6 relative overflow-hidden">
       {/* BG video cover, sem tarjas, centralizado */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* MOBILE: short vertical */}
+      <div className="absolute inset-0 overflow-hidden md:hidden">
         <iframe
           ref={bgIframeRef}
           src="https://www.youtube.com/embed/hLyS1HvtmXE?autoplay=1&mute=1&playsinline=1&loop=1&playlist=hLyS1HvtmXE&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
-          title="Background Technology Video"
-          className="
-              absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-              /* escala extremamente agressiva no MOBILE para eliminar faixas pretas */
-              h-[400%] w-[500%]
-              /* tablet */
-              md:h-[250%] md:w-[350%]
-              /* desktop */
-              lg:h-[145%] lg:w-[200%]
-              pointer-events-none
-            "
+          title="Background Technology Video (Mobile)"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-[500%] pointer-events-none"
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
           referrerPolicy="strict-origin-when-cross-origin"
           loading="eager"
           allowFullScreen
           style={{ border: 'none', pointerEvents: 'none' }}
         />
-        {/* overlay atual */}
-        <div className="absolute inset-0 bg-white/85 pointer-events-none"></div>
       </div>
+
+      {/* DESKTOP/TABLET: vídeo horizontal */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
+        <iframe
+          ref={bgDesktopIframeRef}
+          src="https://www.youtube.com/embed/zU6q_a-cAjU?autoplay=1&mute=1&playsinline=1&loop=1&playlist=zU6q_a-cAjU&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+          title="Background Technology Video (Desktop)"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:h-[140%] md:w-[180%] lg:h-[145%] lg:w-[200%] pointer-events-none"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          referrerPolicy="strict-origin-when-cross-origin"
+          loading="eager"
+          allowFullScreen
+          style={{ border: 'none', pointerEvents: 'none' }}
+        />
+      </div>
+
+      {/* overlay atual */}
+      <div className="absolute inset-0 bg-white/85 pointer-events-none"></div>
 
       {/* Conteúdo principal */}
       <div className="relative z-10">
