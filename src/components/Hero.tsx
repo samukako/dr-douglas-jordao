@@ -94,7 +94,7 @@ export function Hero() {
           <div className="relative overflow-hidden m-0 p-0 h-full w-full">
             <iframe
               ref={mobileIframeRef1}
-              src="https://www.youtube.com/embed/c54nIIeS-zQ?autoplay=1&mute=1&playsinline=1&loop=1&playlist=c54nIIeS-zQ&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+              src="https://www.youtube-nocookie.com/embed/c54nIIeS-zQ?autoplay=1&mute=1&playsinline=1&loop=1&playlist=c54nIIeS-zQ&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
               title="Background Video Mobile"
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full pointer-events-none"
               allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
@@ -108,7 +108,7 @@ export function Hero() {
         <div className="hidden md:block absolute inset-0 overflow-hidden">
           <iframe
             ref={desktopIframeRef}
-            src="https://www.youtube.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+            src="https://www.youtube-nocookie.com/embed/-EoVYv8d4p8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=-EoVYv8d4p8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
             title="Background Video"
             className="
                   absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2

@@ -12,7 +12,7 @@ export function Tecnologia3D() {
       try {
         const u = new URL(el.src, window.location.origin);
         const host = u.hostname.replace('www.', '');
-        if (!((host.includes('youtube.com') || host.includes('youtube-nocookie.com')) && u.pathname.includes('/embed/'))) return;
+        if (!((host.includes('youtube-nocookie.com') || host.includes('youtube-nocookie.com')) && u.pathname.includes('/embed/'))) return;
         // Autoplay silencioso inline e UI limpa
         u.searchParams.set('autoplay', '1');
         u.searchParams.set('mute', '1');
@@ -109,7 +109,7 @@ export function Tecnologia3D() {
       <div className="absolute inset-0 overflow-hidden md:hidden">
         <iframe
           ref={bgIframeRef}
-          src="https://www.youtube.com/embed/hLyS1HvtmXE?autoplay=1&mute=1&playsinline=1&loop=1&playlist=hLyS1HvtmXE&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+          src="https://www.youtube-nocookie.com/embed/hLyS1HvtmXE?autoplay=1&mute=1&playsinline=1&loop=1&playlist=hLyS1HvtmXE&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
           title="Background Technology Video (Mobile)"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400%] w-[500%] pointer-events-none"
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
@@ -124,7 +124,7 @@ export function Tecnologia3D() {
       <div className="absolute inset-0 overflow-hidden hidden md:block">
         <iframe
           ref={bgDesktopIframeRef}
-          src="https://www.youtube.com/embed/zU6q_a-cAjU?autoplay=1&mute=1&playsinline=1&loop=1&playlist=zU6q_a-cAjU&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+          src="https://www.youtube-nocookie.com/embed/zU6q_a-cAjU?autoplay=1&mute=1&playsinline=1&loop=1&playlist=zU6q_a-cAjU&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
           title="Background Technology Video (Desktop)"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:h-[140%] md:w-[180%] lg:h-[145%] lg:w-[200%] pointer-events-none"
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
@@ -164,7 +164,7 @@ export function Tecnologia3D() {
                    style={{ aspectRatio: '16/9' }}>
                 <iframe
                   ref={mainIframeRef}
-                  src="https://www.youtube.com/embed/zU6q_a-cAjU?autoplay=1&mute=1&playsinline=1&loop=1&playlist=zU6q_a-cAjU&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+                  src="https://www.youtube-nocookie.com/embed/zU6q_a-cAjU?autoplay=1&mute=1&playsinline=1&loop=1&playlist=zU6q_a-cAjU&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
                   title="Tecnologia 3D no atendimento"
                   className="w-full h-full pointer-events-none"
                   allow="autoplay; encrypted-media; picture-in-picture; fullscreen"

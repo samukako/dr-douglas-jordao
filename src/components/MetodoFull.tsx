@@ -339,7 +339,7 @@ export function MetodoFull() {
                  style={{ aspectRatio: '3/4' }}>
               <iframe
                 ref={metodoIframeRef}
-                src="https://www.youtube.com/embed/QwwhzdW-sx8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=QwwhzdW-sx8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
+                src="https://www.youtube-nocookie.com/embed/QwwhzdW-sx8?autoplay=1&mute=1&playsinline=1&loop=1&playlist=QwwhzdW-sx8&rel=0&modestbranding=1&controls=0&enablejsapi=1&showinfo=0&iv_load_policy=3"
                 title="Método Full - Demonstração"
                 className="w-full h-full pointer-events-none"
                 allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
