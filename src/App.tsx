@@ -8,7 +8,7 @@ import { SobreDrDouglas } from "./components/SobreDrDouglas";
 import { FAQ } from "./components/FAQ";
 import { Localizacao } from "./components/Localizacao";
 import { Footer } from "./components/Footer";
-// import { WhatsAppButton } from "./components/WhatsAppButton";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 
 export default function App() {
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function App() {
       <FAQ />
       <Localizacao />
       <Footer />
-      {/* <WhatsAppButton /> */}
+      <WhatsAppButton />
     </div>
   );
 }
