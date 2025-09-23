@@ -1,7 +1,26 @@
 import { Instagram, Phone, Mail } from "lucide-react";
 import monograma from "../assets/f2039f561624ab374594bc1881fa1d0bddda8abe.png";
 
+const clinics = [
+  {
+    slug: "canoas",
+    cidade: "CANOAS - RS",
+    telefone: "+55 51 99630-5040",
+    linkWhatsApp: "https://wa.me/5551996305040"
+  },
+  {
+    slug: "balneario-camboriu",
+    cidade: "BALNEÁRIO CAMBORIÚ - SC",
+    telefone: "+55 47 99137-8070",
+    linkWhatsApp: "https://wa.me/5547991378070"
+  }
+];
+
 export function Footer() {
+  const path = typeof window !== "undefined" ? window.location.pathname : "";
+  const currentSlug = path.includes("balneario-camboriu") ? "balneario-camboriu" : "canoas";
+  const currentClinic = clinics.filter(clinic => clinic.slug === currentSlug);
+
   return (
     <footer className="bg-[#1E1E1E] text-white py-16 md:py-20 px-4 md:px-6">
       <div className="container mx-auto max-w-6xl">
@@ -35,7 +54,7 @@ export function Footer() {
                 <Instagram className="w-6 h-6" />
               </a>
               <a 
-                href="https://wa.me/5551996305040" 
+                href={currentClinic[0].linkWhatsApp} 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-[#A89888] rounded-full flex items-center justify-center hover:bg-[#8B7B6B] transition-colors duration-300"
@@ -57,14 +76,12 @@ export function Footer() {
               CONTATOS
             </h4>
             <div className="space-y-6 text-white/70" style={{ fontFamily: 'DM Sans, sans-serif' }}>
-              <div>
-                <p className="text-white font-medium mb-1">CANOAS - RS</p>
-                <p>+55 51 99630-5040</p>
-              </div>
-              <div>
-                <p className="text-white font-medium mb-1">BALNEÁRIO CAMBORIÚ - SC</p>
-                <p>+55 47 99137-8070</p>
-              </div>
+              {currentClinic.map(clinic => (
+                <div key={clinic.slug}>
+                  <p className="text-white font-medium mb-1">{clinic.cidade}</p>
+                  <p>{clinic.telefone}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

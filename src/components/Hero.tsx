@@ -1,10 +1,23 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { useEffect, useRef } from "react";
 
+const WHATS = {
+  canoas: "5551996305040",
+  bc: "5547991378070",
+} as const;
+
+function getWhatsByPath(pathname: string) {
+  return pathname.includes("balneario-camboriu") ? WHATS.bc : WHATS.canoas;
+}
+
 export function Hero() {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5551996305040", "_blank");
+    if (typeof window === "undefined") return;
+    const num = getWhatsByPath(window.location.pathname);
+    const preset = "Olá! Gostaria de agendar uma avaliação.";
+    const href = `https://wa.me/${num}?text=${encodeURIComponent(preset)}`;
+    window.open(href, "_blank");
   };
 
   const mobileIframeRef1 = useRef<HTMLIFrameElement>(null);
